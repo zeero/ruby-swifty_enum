@@ -1,8 +1,6 @@
 # SwiftyEnum
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/swifty_enum`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+SwiftyEnum enable defining enums in Ruby. Enums behave like Swift enums.
 
 ## Installation
 
@@ -22,7 +20,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# enum class
+class Flag
+  # including SwiftyEnum module is required
+  include SwiftyEnum
+
+  # now you can define enum cases with 'def_case CASE_NAME [CASE_VALUE]'
+  def_case 'On', '1'
+  def_case 'Off', '0'
+
+  # you can also define method for each enum cases with 'def_method METHOD_NAME &BLOCK'
+  def_method 'status' do |enum_case|
+    case enum_case
+    when Flag::On then
+      'ok'
+    when Flag::Off then
+      'ng'
+    end
+  end
+end
+```
 
 ## Development
 
