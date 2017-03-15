@@ -23,17 +23,19 @@ Or install it yourself as:
 ```ruby
 # enum class
 class Flag
-  # including SwiftyEnum module is required
+  # Including SwiftyEnum module is required
   include SwiftyEnum
 
-  # now you can define enum cases with 'def_case CASE_NAME [CASE_VALUE]'
+  # Now you can define enum cases. Usage: def_case CASE_NAME [CASE_VALUE]
   def_case 'On', '1'
   def_case 'Off', '0'
 
-  # you can also define method for each enum cases with 'def_method METHOD_NAME &BLOCK'
+  # You can also define method for each enum cases. Usage: def_method METHOD_NAME &BLOCK
+  # Please put this statement below all of 'def_case' statements
   def_method 'status' do |enum_case|
     case enum_case
     when Flag::On then
+      # You can't use return statement, but value of last statement is returned from method actually
       'ok'
     when Flag::Off then
       'ng'
