@@ -30,7 +30,7 @@ class Flag
   def_case 'On', '1'
   def_case 'Off', '0'
 
-  # You can also define method for each enum cases. Usage: def_method METHOD_NAME &BLOCK
+  # You can also define method for each enum cases. Usage: def_method METHOD_NAME { || ... }
   # Please put this statement below all of 'def_case' statements
   def_method 'status' do |enum_case|
     case enum_case

@@ -13,6 +13,42 @@ describe SwiftyEnum do
       refute_nil Flag::On
       refute_nil Flag::Off
     end
+
+    describe 'defined enum case' do
+      it 'has class method "rawvalue" that returns enum value' do
+        assert_equal '1', Flag::On.rawvalue
+        assert_equal '0', Flag::Off.rawvalue
+      end
+
+      it 'can be handled with switch statement' do
+        on = Flag.get('1')
+        case on
+        when Flag::Off then
+          assert false
+        when Flag::On then
+          assert true
+        else
+          assert false
+        end
+
+        unknown = Flag.get('2')
+        case unknown
+        when Flag::Off then
+          assert false
+        when Flag::On then
+          assert false
+        else
+          assert true
+        end
+      end
+    end
+
+    it 'raise error when rawvalue is duplicated' do
+      assert_raises RuntimeError, printf(SwiftyEnum::Messages::ERR_DUPLICATE_ENUM_RAWVALUE, 'Dup') do
+        Flag.def_case 'Dup', 'dup'
+        Flag.def_case 'Dup', 'dup'
+      end
+    end
   end
 
   describe 'get' do
@@ -31,24 +67,25 @@ describe SwiftyEnum do
       assert_equal 'ok', Flag.get('1').status
       assert_equal 'ng', Flag.get('0').status
     end
-  end
-end
 
-describe 'enum case' do
-  it 'has class method "rawvalue" that returns enum value' do
-    assert_equal '1', Flag::On.rawvalue
-    assert_equal '0', Flag::Off.rawvalue
-  end
+    it 'raise error when def_method is called without block' do
+      assert_raises RuntimeError, SwiftyEnum::Messages::ERR_DEF_METHOD_WITHOUT_BLOCK do
+        class Empty
+          include SwiftyEnum
+          def_method 'no_block'
+        end
+      end
+    end
 
-  it 'can be handled with switch statement' do
-    on = Flag.get('1')
-    case on
-    when Flag::Off then
-      assert false
-    when Flag::On then
-      assert true
-    else
-      assert false
+    it 'raise error when there is no defined enum case' do
+      assert_raises RuntimeError, SwiftyEnum::Messages::ERR_DEF_METHOD_FOR_EMPTY do
+        class Empty
+          include SwiftyEnum
+          def_method 'empty' do
+            ''
+          end
+        end
+      end
     end
   end
 end
