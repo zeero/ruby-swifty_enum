@@ -8,6 +8,7 @@ class Flag
 
   def_case 'On', '1'
   def_case 'Off', '0'
+  def_case 'Dup', 'dup'
 
   def_method 'status' do |enum_case|
     case enum_case
@@ -15,6 +16,8 @@ class Flag
       'ok'
     when Flag::Off then
       'ng'
+    else
+      'unknown'
     end
   end
 end

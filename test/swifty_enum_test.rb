@@ -46,7 +46,6 @@ describe SwiftyEnum do
     it 'raise error when rawvalue is duplicated' do
       assert_raises RuntimeError, printf(SwiftyEnum::Messages::ERR_DUPLICATE_ENUM_RAWVALUE, 'Dup') do
         Flag.def_case 'Dup', 'dup'
-        Flag.def_case 'Dup', 'dup'
       end
     end
   end
@@ -86,6 +85,13 @@ describe SwiftyEnum do
           end
         end
       end
+    end
+  end
+
+  describe 'enum_cases' do
+    it 'returns list of defined enum case' do
+      expected = [Flag::On, Flag::Off, Flag::Dup]
+      assert_equal expected, Flag.enum_cases
     end
   end
 end

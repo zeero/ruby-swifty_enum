@@ -55,6 +55,11 @@ module SwiftyEnum
       @_enum_hash ||= {}
       return @_enum_hash.fetch rawvalue, nil
     end
+
+    # get list of defined enum case
+    def enum_cases
+      return @_enum_hash.values
+    end
   end
 end
 
