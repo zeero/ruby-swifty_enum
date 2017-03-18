@@ -1,5 +1,16 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.3.1
+- 2.4.0
+- 2.3.1
+- 2.2.5
+- 2.1.10
 before_install: gem install bundler -v 1.13.6
+addons:
+  code_climate:
+    repo_token: 1fc821e35fa7fd3c731c979bfecdf91cfb67a5b903829a4a083d62ee75b98fa5
+after_success:
+- bundle exec codeclimate-test-reporter
+notifications:
+  slack:
+    secure: FaNGHfEjL0lfgQrNGsXz+6knlaGEsiJ3cia3/bcXPEVrvB37poQIzi3ixsYBYmaEDJTpSiFNharYMEQXimlahXLUOwIVMT4hBOFEcqwguU9GOUSms/Qwld0+N1l3xIf5mIM8h6KpVv8rpjTGnBQkQl8mu70wk1omu/P9x4lykhU7ZdttgSgNzsUH81dPmDBCS70CkTNfhmbaWzAtXdrploAcN/eA3mUSRl048v2r2rLLNBeLEbDougL+h8nSg80AF1Ux3X2aXwiTxZO2AqFlza5l0JyR0B5A660XsMmxBOcRY4HSgbL9zSGuIfqDYtZMzWmGcDh1kJxmdeH/xX1dTtLISc3tzwtAzZDePNEsZYVLSrY2QvlocDFlneVnRZ3SPJCYI/LkTMoZwp4Uz0dZnPcvXhGWf3yR6bce4aAMWHgMyUZaQ0PIWEvB7r7GvT7fAtMP4/Y6fwPsOwXUdynfSroHoNAbyZkNwoVxBFO4Qb0n366Lvq98tRPM2Rv+w785zSxnPUrQjPDJCtWBW/YvgxZkuxuW9AhFuMTyXx6WR6LDdhbPnj9B2VkMXfNFY+Nmd2meZVHW93J9BuvrRiR+PHyINrtMi4fwqBFPLqwgR5vjj+2pyNsJ55hMQjezE8e37jLWxF5FhpyZDmoDbTNMIQ9v4IOOmZaSmDg1ltiQ/go=

@@ -1,3 +1,10 @@
+[![Build Status](https://travis-ci.org/zeero/ruby-swifty_enum.svg?branch=master)](https://travis-ci.org/zeero/ruby-swifty_enum)
+[![Code Climate](https://codeclimate.com/github/zeero/ruby-swifty_enum/badges/gpa.svg)](https://codeclimate.com/github/zeero/ruby-swifty_enum)
+[![Test Coverage](https://codeclimate.com/github/zeero/ruby-swifty_enum/badges/coverage.svg)](https://codeclimate.com/github/zeero/ruby-swifty_enum/coverage)
+[![Dependency Status](https://gemnasium.com/badges/github.com/zeero/ruby-swifty_enum.svg)](https://gemnasium.com/github.com/zeero/ruby-swifty_enum)
+[![Gem Version](https://badge.fury.io/rb/swifty_enum.svg)](https://badge.fury.io/rb/swifty_enum)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE.txt)
+
 # SwiftyEnum
 
 SwiftyEnum enable defining enums in Ruby. Enums behave like Swift enums.
