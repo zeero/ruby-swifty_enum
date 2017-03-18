@@ -45,10 +45,10 @@ class Flag
   #   Usage: def_method METHOD_NAME { || ... }
   def_method 'status' do |enum_case|
     case enum_case
-    when Flag::On then
+    when On then
       # You can't use return statement, but value of last statement is returned from enum method.
       'OK'
-    when Flag::Off then
+    when Off then
       'NG'
     end
   end

@@ -15,9 +15,9 @@ class Flag
 
   def_method 'status' do |enum_case|
     case enum_case
-    when Flag::On then
+    when On then
       'ok'
-    when Flag::Off then
+    when Off then
       'ng'
     else
       'unknown'
@@ -33,9 +33,9 @@ class EnumWithoutRawvalue
 
   def_method 'name' do |enum_case|
     case enum_case
-    when EnumWithoutRawvalue::First then
+    when First then
       'First'
-    when EnumWithoutRawvalue::Second then
+    when Second then
       'Second'
     else
       'Unknown'
