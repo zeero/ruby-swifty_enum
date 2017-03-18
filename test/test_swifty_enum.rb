@@ -14,6 +14,11 @@ describe SwiftyEnum do
       refute_nil Flag::Off
     end
 
+    it 'can define enum case without rawvalue' do
+      refute_nil EnumWithoutRawvalue::First
+      refute_nil EnumWithoutRawvalue::Second
+    end
+
     describe 'defined enum case' do
       it 'has class method "rawvalue" that returns enum value' do
         assert_equal '1', Flag::On.rawvalue
@@ -41,6 +46,18 @@ describe SwiftyEnum do
           assert true
         end
       end
+
+      it 'has class method "hashvalue" that returns incremental number' do
+        assert_equal 0, Flag::On.hashvalue
+        assert_equal 1, Flag::Off.hashvalue
+        assert_equal 0, EnumWithoutRawvalue::First.hashvalue
+        assert_equal 1, EnumWithoutRawvalue::Second.hashvalue
+      end
+
+      it 'use hashvalue as rawvalue when rawvalue is not given' do
+        assert_equal 0, EnumWithoutRawvalue::First.rawvalue
+        assert_equal 1, EnumWithoutRawvalue::Second.rawvalue
+      end
     end
 
     it 'raise error when rawvalue is duplicated' do
@@ -54,10 +71,14 @@ describe SwiftyEnum do
     it 'returns enum case' do
       assert_equal Flag::On,  Flag.get('1')
       assert_equal Flag::Off, Flag.get('0')
+      assert_equal EnumWithoutRawvalue::First,  EnumWithoutRawvalue.get(0)
+      assert_equal EnumWithoutRawvalue::Second, EnumWithoutRawvalue.get(1)
     end
 
     it 'returns nil when given args is not exists in definition' do
       assert_nil Flag.get('2')
+      assert_nil Flag.get(0)
+      assert_nil EnumWithoutRawvalue.get(2)
     end
   end
 
@@ -65,6 +86,8 @@ describe SwiftyEnum do
     it 'can define method for each enum cases' do
       assert_equal 'ok', Flag.get('1').status
       assert_equal 'ng', Flag.get('0').status
+      assert_equal 'First',  EnumWithoutRawvalue::First.name
+      assert_equal 'Second', EnumWithoutRawvalue::Second.name
     end
 
     it 'raise error when def_method is called without block' do

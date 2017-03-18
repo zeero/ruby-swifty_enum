@@ -22,3 +22,21 @@ class Flag
   end
 end
 
+class EnumWithoutRawvalue
+  include SwiftyEnum
+
+  def_case 'First'
+  def_case 'Second'
+
+  def_method 'name' do |enum_case|
+    case enum_case
+    when EnumWithoutRawvalue::First then
+      'First'
+    when EnumWithoutRawvalue::Second then
+      'Second'
+    else
+      'Unknown'
+    end
+  end
+end
+

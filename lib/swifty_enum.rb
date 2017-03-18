@@ -9,8 +9,10 @@ module SwiftyEnum
   module ClassMethods
 
     # define enum case as subclass
-    def def_case(name, rawvalue)
+    def def_case(name, rawvalue = nil)
       @_enum_hash ||= {}
+      hashvalue = @_enum_hash.size
+      rawvalue ||= hashvalue
 
       # check rawvalue is unique
       if @_enum_hash.has_key? rawvalue
@@ -18,6 +20,9 @@ module SwiftyEnum
       end
 
       klass = Class.new
+      klass.define_singleton_method 'hashvalue' do
+        return hashvalue
+      end
       klass.define_singleton_method 'rawvalue' do
         return rawvalue
       end
