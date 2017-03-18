@@ -12,7 +12,7 @@ module SwiftyEnum
     def def_case(name, rawvalue)
       @_enum_hash ||= {}
 
-      # check value is unique
+      # check rawvalue is unique
       if @_enum_hash.has_key? rawvalue
         raise sprintf(SwiftyEnum::Messages::ERR_DUPLICATE_ENUM_RAWVALUE, rawvalue)
       end

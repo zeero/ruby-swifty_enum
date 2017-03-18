@@ -27,4 +27,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "minitest-doc_reporter"
   spec.add_development_dependency "minitest-stub_any_instance"
+  spec.add_development_dependency "guard"
+  spec.add_development_dependency "guard-minitest"
+  spec.add_development_dependency "rb-fsevent"
+  spec.add_development_dependency "terminal-notifier-guard", "~> 1.6.1"
 end
