@@ -29,19 +29,27 @@ describe SwiftyEnum do
         on = Flag.get('1')
         case on
         when Flag::Off then
+          # :nocov:
           flunk
+          # :nocov:
         when Flag::On then
           assert true
         else
+          # :nocov:
           flunk
+          # :nocov:
         end
 
         unknown = Flag.get('2')
         case unknown
         when Flag::Off then
+          # :nocov:
           flunk
+          # :nocov:
         when Flag::On then
+          # :nocov:
           flunk
+          # :nocov:
         else
           assert true
         end
@@ -104,7 +112,6 @@ describe SwiftyEnum do
         class Empty
           include SwiftyEnum
           def_method 'empty' do
-            ''
           end
         end
       end
