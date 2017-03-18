@@ -29,19 +29,19 @@ describe SwiftyEnum do
         on = Flag.get('1')
         case on
         when Flag::Off then
-          assert false
+          flunk
         when Flag::On then
           assert true
         else
-          assert false
+          flunk
         end
 
         unknown = Flag.get('2')
         case unknown
         when Flag::Off then
-          assert false
+          flunk
         when Flag::On then
-          assert false
+          flunk
         else
           assert true
         end
