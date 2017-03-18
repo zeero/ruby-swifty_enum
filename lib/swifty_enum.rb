@@ -1,3 +1,7 @@
+# Module to be included in enum class.
+#
+# @author zeero
+
 require "swifty_enum/version"
 require "swifty_enum/messages"
 
@@ -9,6 +13,9 @@ module SwiftyEnum
   module ClassMethods
 
     # define enum case as subclass
+    # @param [String] name     enum case name
+    # @param [Object] rawvalue enum case rawvalue
+    # @raise [RuntimeError] SwiftyEnum::Messages::ERR_DUPLICATE_ENUM_RAWVALUE
     def def_case(name, rawvalue = nil)
       @_enum_hash ||= {}
       hashvalue = @_enum_hash.size
@@ -35,6 +42,7 @@ module SwiftyEnum
     end
 
     # define enum method
+    # @param [String] name enum method name
     def def_method(name)
       @_enum_hash ||= {}
 
@@ -56,12 +64,15 @@ module SwiftyEnum
     end
 
     # get enum case
+    # @param  [Object] rawvalue enum case rawvalue
+    # @return [Class]  enum case
     def get(rawvalue)
       @_enum_hash ||= {}
       return @_enum_hash.fetch rawvalue, nil
     end
 
-    # get list of defined enum case
+    # get all enum cases
+    # @return [Array] enum cases
     def enum_cases
       return @_enum_hash.values
     end

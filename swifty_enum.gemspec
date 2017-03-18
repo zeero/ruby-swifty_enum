@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["zeero"]
   spec.email         = ["zeero26@gmail.com"]
 
-  spec.summary       = %q{enum for Ruby with Swift style.}
+  spec.summary       = %q{Enum for Ruby with Swift style.}
   spec.description   = %q{SwiftyEnum enable defining enums in Ruby. Enums behave like Swift enums.}
   spec.homepage      = "https://github.com/zeero/ruby-swifty_enum"
   spec.license       = "MIT"
@@ -27,8 +27,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "minitest-doc_reporter"
   spec.add_development_dependency "minitest-stub_any_instance"
+  spec.add_development_dependency "yard"
   spec.add_development_dependency "guard"
   spec.add_development_dependency "guard-minitest"
+  spec.add_development_dependency "guard-yard"
   spec.add_development_dependency "rb-fsevent"
   spec.add_development_dependency "terminal-notifier-guard", "~> 1.6.1"
 end
