@@ -9,11 +9,11 @@ require 'minitest/autorun'
 class Flag
   include SwiftyEnum
 
-  def_case 'On', '1'
-  def_case 'Off', '0'
-  def_case 'Dup', 'dup'
+  def_case :On, '1'
+  def_case :Off, '0'
+  def_case :Dup, 'dup'
 
-  def_method 'status' do |enum_case|
+  def_method :status do |enum_case|
     case enum_case
     when On then
       'ok'
@@ -23,15 +23,24 @@ class Flag
       'unknown'
     end
   end
+  
+  def_method :status_with do |enum_case, args|
+    if args.empty?
+      enum_case.status
+    else
+      about = args.join(', ')
+      "#{enum_case.status} with #{about}"
+    end
+  end
 end
 
 class EnumWithoutRawvalue
   include SwiftyEnum
 
-  def_case 'First'
-  def_case 'Second'
+  def_case :First
+  def_case :Second
 
-  def_method 'name' do |enum_case|
+  def_method :name do |enum_case|
     case enum_case
     when First then
       'First'

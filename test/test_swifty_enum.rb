@@ -98,6 +98,12 @@ describe SwiftyEnum do
       assert_equal 'Second', EnumWithoutRawvalue::Second.name
     end
 
+    it 'can define method with variable args' do
+      assert_equal 'ok', Flag.get('1').status_with
+      assert_equal 'ok with foo', Flag.get('1').status_with('foo')
+      assert_equal 'ok with foo, bar', Flag.get('1').status_with('foo', 'bar')
+    end
+
     it 'raise error when def_method is called without block' do
       assert_raises RuntimeError, SwiftyEnum::Messages::ERR_DEF_METHOD_WITHOUT_BLOCK do
         class Empty

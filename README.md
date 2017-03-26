@@ -37,19 +37,29 @@ class Flag
 
   # Now you can define enum case by 'def_case' statement.
   #   Usage: def_case CASE_NAME [RAWVALUE]
-  def_case 'On', '1'
-  def_case 'Off', '0'
+  def_case :On, '1'
+  def_case :Off, '0'
 
-  # You can also define method for each enum cases by 'def_method' statement.
+  # You can define method for each enum cases by 'def_method' statement.
   # Please put this statement below all of 'def_case' statements.
   #   Usage: def_method METHOD_NAME { || ... }
-  def_method 'status' do |enum_case|
+  def_method :status do |enum_case|
     case enum_case
     when On then
       # You can't use return statement, but value of last statement is returned from enum method.
       'OK'
     when Off then
       'NG'
+    end
+  end
+
+  # You can also define method with variable arguments.
+  def_method :status_with do |enum_case, args|
+    if args.empty?
+      enum_case.status
+    else
+      about = args.join(', ')
+      "#{enum_case.status} with #{about}"
     end
   end
 end
@@ -88,6 +98,7 @@ end
 # Enum method is defined in each enum cases.
 Flag::On.status                # => 'OK'
 Flag::Off.status               # => 'NG'
+Flag::On.status_with('foo')    # => 'OK with foo'
 
 # When you want to get all of enum cases, use 'enum_cases'.
 Flag.enum_cases                # => [Flag::On, Flag::Off]

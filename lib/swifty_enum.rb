@@ -57,8 +57,8 @@ module SwiftyEnum
       end
 
       @_enum_hash.values.each do |klass|
-        klass.define_singleton_method name do
-          yield klass
+        klass.define_singleton_method name do |*args|
+          yield klass, args
         end
       end
     end
