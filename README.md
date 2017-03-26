@@ -52,16 +52,6 @@ class Flag
       'NG'
     end
   end
-
-  # You can also define method with variable arguments.
-  def_method :status_with do |enum_case, args|
-    if args.empty?
-      enum_case.status
-    else
-      about = args.join(', ')
-      "#{enum_case.status} with #{about}"
-    end
-  end
 end
 
 
@@ -98,6 +88,18 @@ end
 # Enum method is defined in each enum cases.
 Flag::On.status                # => 'OK'
 Flag::Off.status               # => 'NG'
+
+# Arguments of enum method can be handled as variable arguments.
+class Flag
+  def_method :status_with do |enum_case, args|
+    if args.empty?
+      enum_case.status
+    else
+      with = args.join(', ')
+      "#{enum_case.status} with #{with}"
+    end
+  end
+end
 Flag::On.status_with('foo')    # => 'OK with foo'
 
 # When you want to get all of enum cases, use 'enum_cases'.

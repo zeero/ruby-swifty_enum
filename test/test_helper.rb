@@ -28,8 +28,8 @@ class Flag
     if args.empty?
       enum_case.status
     else
-      about = args.join(', ')
-      "#{enum_case.status} with #{about}"
+      with = args.join(', ')
+      "#{enum_case.status} with #{with}"
     end
   end
 end
